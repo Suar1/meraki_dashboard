@@ -108,9 +108,9 @@ From project root:
 docker compose up --build
 ```
 
-Open `http://SERVER_IP:5500`, for example `http://10.1.1.12:5500` or `http://192.168.1.50:5500`.
+Open `http://SERVER_IP:8014`, for example `http://10.1.1.12:8014` or `http://192.168.1.50:8014`.
 
-- Only frontend/nginx is published: `0.0.0.0:5500:80`.
+- Only frontend/nginx is published: `0.0.0.0:8014:80`.
 - FastAPI listens on `8000` inside the private Compose network only.
 - nginx serves the Vite build and proxies `/api/*` to `http://backend:8000/api/*`.
 
@@ -123,7 +123,7 @@ docker compose logs -f
 
 Notes:
 - Set `SECRET_KEY` before starting production Compose; the default is rejected when `APP_ENV=production`.
-- If the Docker host firewall is enabled, allow inbound TCP/5500 from the LAN.
+- If the Docker host firewall is enabled, allow inbound TCP/8014 from the LAN.
 - No backend named volume is created. Temporary backend paths are tmpfs-backed and disappear on container restart.
 - For local *non-Docker* dev, the browser calls same-origin `/api` and Vite proxies to the backend using `VITE_API_PROXY_TARGET`.
 
@@ -286,3 +286,5 @@ npm run build
 - CORS must include every browser origin you use to load the UI.
 - JSON audit/layout files on disk are not suitable for high-concurrency multi-writer production without a real database.
 
+
+Docker host port: **8014**. See [deployment port registry](DEPLOYMENT_PORTS.md).

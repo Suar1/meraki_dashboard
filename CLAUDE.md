@@ -36,7 +36,7 @@ docker compose down
 docker compose logs -f
 ```
 
-Production Docker exposes only `0.0.0.0:5500:80` from the frontend/nginx container, so LAN clients can use `http://<HOST-IP>:5500`. FastAPI listens on port 8000 inside the private Compose network only, nginx proxies `/api/` to `http://backend:8000`, and backend temporary paths are tmpfs-backed with no named data volume. If the host firewall is enabled, allow inbound TCP/5500.
+Production Docker exposes only `0.0.0.0:8014:80` from the frontend/nginx container, so LAN clients can use `http://<HOST-IP>:8014`. FastAPI listens on port 8000 inside the private Compose network only, nginx proxies `/api/` to `http://backend:8000`, and backend temporary paths are tmpfs-backed with no named data volume. If the host firewall is enabled, allow inbound TCP/8014.
 
 ### Sanity checks (no test suite yet)
 - `GET /health` → `{"status":"ok"}`
