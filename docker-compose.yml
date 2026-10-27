@@ -20,7 +20,7 @@ services:
     tmpfs:
       - /tmp:rw,noexec,nosuid,size=64m
     read_only: true
-    restart: "no"
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -41,7 +41,7 @@ services:
       - /var/run:rw,noexec,nosuid,size=8m
       - /tmp:rw,noexec,nosuid,size=16m
     read_only: true
-    restart: "no"
+    restart: unless-stopped
     security_opt:
       - no-new-privileges:true
     cap_drop:
