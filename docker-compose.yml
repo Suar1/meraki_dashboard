@@ -16,11 +16,11 @@ services:
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8014,http://127.0.0.1:8014}
       CACHE_TTL_SECONDS: ${CACHE_TTL_SECONDS:-60}
     ports:
-      - "${BIND_ADDRESS:-127.0.0.1}:8015:8000"
+      - "127.0.0.1:8015:8000"
     tmpfs:
       - /tmp:rw,noexec,nosuid,size=64m
     read_only: true
-    restart: unless-stopped
+    restart: "no"
     security_opt:
       - no-new-privileges:true
     cap_drop:
@@ -33,7 +33,7 @@ services:
       context: .
       dockerfile: frontend/Dockerfile
     ports:
-      - "${BIND_ADDRESS:-127.0.0.1}:8014:80"
+      - "127.0.0.1:8014:80"
     depends_on:
       - backend
     tmpfs:
@@ -41,7 +41,7 @@ services:
       - /var/run:rw,noexec,nosuid,size=8m
       - /tmp:rw,noexec,nosuid,size=16m
     read_only: true
-    restart: unless-stopped
+    restart: "no"
     security_opt:
       - no-new-privileges:true
     cap_drop:
